@@ -15,12 +15,12 @@ import { IamModule } from './iam/iam.module';
       password: 'pass123',
       database: 'postgres',
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: true
     }),
     UsersModule,
-    IamModule,
+    IamModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}

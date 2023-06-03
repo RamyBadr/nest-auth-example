@@ -6,7 +6,7 @@ describe('BcryptService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [BcryptService],
+      providers: [BcryptService]
     }).compile();
 
     service = await module.get<BcryptService>(BcryptService);
