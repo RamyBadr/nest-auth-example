@@ -20,6 +20,10 @@ import { AuthenticationService } from './authentication/authentication.service';
       provide: HashingService,
       useClass: BcryptService
     },
+    {
+      provide: APP_GUARD,
+      useClass: AccessTokenGuard
+    },
     AuthenticationService
   ],
   controllers: [AuthenticationController]
