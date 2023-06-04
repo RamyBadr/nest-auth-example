@@ -19,8 +19,8 @@ import { IamModule } from './iam/iam.module';
       autoLoadEntities: true,
       synchronize: true
     }),
-    UsersModule,
-    IamModule
+    IamModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService]
