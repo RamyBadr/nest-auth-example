@@ -9,6 +9,7 @@ import { BcryptService } from '../hashing/bcrypt.service';
 import { HashingService } from '../hashing/hashing.service';
 import { AuthenticationController } from './authentication.controller';
 import { AuthenticationService } from './authentication.service';
+import { RefreshTokenIdsStorage } from './refresh-token-ids.storage';
 
 describe('AuthenticationController', () => {
   let controller: AuthenticationController;
@@ -35,7 +36,8 @@ describe('AuthenticationController', () => {
             issuer: 'localhost',
             accessTokenTtl: parseInt('3600', 10)
           }
-        }
+        },
+        RefreshTokenIdsStorage
       ],
       controllers: [AuthenticationController]
     }).compile();

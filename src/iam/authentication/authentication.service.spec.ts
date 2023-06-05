@@ -8,6 +8,7 @@ import { HashingService } from '../hashing/hashing.service';
 import { AuthenticationService } from './authentication.service';
 import { DataSource } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { RefreshTokenIdsStorage } from './refresh-token-ids.storage';
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
   beforeEach(async () => {
@@ -32,7 +33,8 @@ describe('AuthenticationService', () => {
             issuer: 'localhost',
             accessTokenTtl: parseInt('3600', 10)
           }
-        }
+        },
+        RefreshTokenIdsStorage
       ]
     }).compile();
 

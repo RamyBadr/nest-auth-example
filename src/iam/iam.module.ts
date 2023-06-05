@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../users/entities/user.entity';
 import { AccessTokenGuard } from './authentication/guards/access-token.guard';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
+import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.storage';
 import jwtConfig from './config/jwt.config';
 import { BcryptService } from './hashing/bcrypt.service';
 import { HashingService } from './hashing/hashing.service';
@@ -28,7 +29,8 @@ import { AuthenticationService } from './authentication/authentication.service';
       useClass: AuthenticationGuard
     },
     AuthenticationService,
-    AccessTokenGuard
+    AccessTokenGuard,
+    RefreshTokenIdsStorage
   ],
   controllers: [AuthenticationController]
 })
