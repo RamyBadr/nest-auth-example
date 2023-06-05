@@ -7,6 +7,7 @@ import { User } from '../users/entities/user.entity';
 import { AccessTokenGuard } from './authentication/guards/access-token.guard';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
 import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.storage';
+import { RolesGuard } from './authorization/guards/roles.guard';
 import jwtConfig from './config/jwt.config';
 import { BcryptService } from './hashing/bcrypt.service';
 import { HashingService } from './hashing/hashing.service';
@@ -27,6 +28,10 @@ import { AuthenticationService } from './authentication/authentication.service';
     {
       provide: APP_GUARD,
       useClass: AuthenticationGuard
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard
     },
     AuthenticationService,
     AccessTokenGuard,
