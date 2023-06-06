@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { IamModule } from './iam/iam.module';
+import { VideoModule } from './video/video.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -20,7 +22,9 @@ import { IamModule } from './iam/iam.module';
       synchronize: true
     }),
     IamModule,
-    UsersModule
+    UsersModule,
+    VideoModule,
+    ImageModule
   ],
   controllers: [AppController],
   providers: [AppService]
