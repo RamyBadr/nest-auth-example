@@ -3,7 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AccessControlModule } from 'nest-access-control';
 import { User } from '../users/entities/user.entity';
+import { accRoles } from './authorization/access-control/acc-roles';
 import { AccessTokenGuard } from './authentication/guards/access-token.guard';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
 import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.storage';
@@ -18,7 +20,8 @@ import { AuthenticationService } from './authentication/authentication.service';
   imports: [
     TypeOrmModule.forFeature([User]),
     JwtModule.registerAsync(jwtConfig.asProvider()),
-    ConfigModule.forFeature(jwtConfig)
+    ConfigModule.forFeature(jwtConfig),
+    AccessControlModule.forRoles(accRoles)
   ],
   providers: [
     {
@@ -29,10 +32,10 @@ import { AuthenticationService } from './authentication/authentication.service';
       provide: APP_GUARD,
       useClass: AuthenticationGuard
     },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard
+    // },
     AuthenticationService,
     AccessTokenGuard,
     RefreshTokenIdsStorage

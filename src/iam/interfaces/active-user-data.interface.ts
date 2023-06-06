@@ -8,4 +8,6 @@ export interface ActiveUserData {
   sub: number;
   email: string;
   role: Role;
+
+  roles?: Role[];
 }

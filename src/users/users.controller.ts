@@ -5,22 +5,29 @@ import {
   Get,
   Param,
   Patch,
-  Post
+  Post,
+  UseGuards
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Roles } from '../iam/authorization/decorators/roles.decorator';
+import { ACGuard, UseRoles } from 'nest-access-control';
+import { AuthenticationGuard } from '../iam/authentication/guards/authentication.guard';
+// import { Roles } from '../iam/authorization/decorators/roles.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Role } from './enums/role.enum';
+// import { Role } from './enums/role.enum';
 import { UsersService } from './users.service';
 
 @ApiTags('Users')
 @ApiBearerAuth()
-@Roles(Role.Admin)
+@UseGuards(ACGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @UseRoles({
+    resource: 'user',
+    action: 'create'
+  })
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
